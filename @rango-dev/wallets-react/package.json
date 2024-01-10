@@ -1,0 +1,35 @@
+{
+  "name": "@rango-dev/wallets-react",
+  "version": "0.3.1-next.0",
+  "license": "MIT",
+  "type": "module",
+  "module": "./dist/index.js",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "node ../../scripts/build/command.mjs --path wallets/react",
+    "clean": "rimraf dist",
+    "format": "prettier --write '{.,src}/**/*.{ts,tsx}'",
+    "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
+  },
+  "peerDependencies": {
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  },
+  "dependencies": {
+    "@rango-dev/wallets-core": "^0.17.1-next.0",
+    "@rango-dev/wallets-shared": "^0.17.0",
+    "rango-types": "^0.1.46"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

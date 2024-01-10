@@ -1,0 +1,31 @@
+{
+  "name": "@rango-dev/provider-xdefi",
+  "version": "0.17.0",
+  "license": "MIT",
+  "type": "module",
+  "module": "./dist/index.js",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "node ../../scripts/build/command.mjs --path wallets/provider-xdefi",
+    "clean": "rimraf dist",
+    "format": "prettier --write '{.,src}/**/*.{ts,tsx}'",
+    "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
+  },
+  "dependencies": {
+    "@rango-dev/signer-evm": "^0.17.0",
+    "@rango-dev/signer-solana": "^0.17.0",
+    "@rango-dev/wallets-shared": "^0.17.0",
+    "rango-types": "^0.1.46"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

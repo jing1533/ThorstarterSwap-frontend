@@ -1,0 +1,32 @@
+{
+  "name": "@rango-dev/queue-manager-core",
+  "version": "0.17.0",
+  "license": "MIT",
+  "type": "module",
+  "module": "./dist/index.js",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "node ../../scripts/build/command.mjs --path queue-manager/core",
+    "clean": "rimraf dist",
+    "format": "prettier --write '{.,src}/**/*.{ts,tsx}'",
+    "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.3.4"
+  },
+  "dependencies": {
+    "idb": "^7.1.1",
+    "uuid": "^9.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

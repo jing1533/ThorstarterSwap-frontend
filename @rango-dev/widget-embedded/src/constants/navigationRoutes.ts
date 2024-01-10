@@ -1,0 +1,17 @@
+export const navigationRoutes = {
+  home: '/',
+  fromSwap: 'from-swap',
+  fromBlockchain: '/from-swap/blockchains',
+  toBlockchain: '/to-swap/blockchains',
+  toSwap: 'to-swap',
+  settings: 'settings',
+  liquiditySources: '/settings/liquidity-sources',
+  themes: '/settings/themes',
+  bridges: '/settings/bridges',
+  exchanges: '/settings/exchanges',
+  languages: '/settings/languages',
+  swaps: 'swaps',
+  wallets: 'wallets',
+  confirmSwap: 'confirm-swap',
+  swapDetails: 'swaps/:requestId',
+};

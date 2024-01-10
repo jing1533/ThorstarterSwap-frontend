@@ -1,0 +1,1 @@
+{"version":3,"file":"shared-sentry.d.ts","sourceRoot":"","sources":["../src/shared-sentry.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,WAAW,EAAE,eAAe,EAAE,MAAM,UAAU,CAAC;AACxD,OAAO,EAAE,UAAU,EAAE,MAAM,2BAA2B,CAAC;AAEvD,wBAAgB,WAAW,CACzB,KAAK,EAAE,OAAO,EACd,IAAI,EAAE,WAAW,EACjB,WAAW,EAAE,eAAe,GAAG,SAAS,EACxC,UAAU,EAAE,UAAU,GAAG,SAAS,GACjC,IAAI,CAcN"}

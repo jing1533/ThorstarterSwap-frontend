@@ -1,0 +1,45 @@
+{
+  "name": "@rango-dev/queue-manager-rango-preset",
+  "version": "0.17.1-next.1",
+  "license": "MIT",
+  "type": "module",
+  "module": "./dist/index.js",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "node ../../scripts/build/command.mjs --path queue-manager/rango-preset",
+    "clean": "rimraf dist",
+    "format": "prettier --write '{.,src}/**/*.{ts,tsx}'",
+    "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
+  },
+  "peerDependencies": {
+    "@rango-dev/queue-manager-core": "*",
+    "@rango-dev/queue-manager-react": "*",
+    "@rango-dev/wallets-react": "*",
+    "@rango-dev/wallets-shared": "*",
+    "@sentry/browser": "*",
+    "bignumber.js": "*",
+    "rango-sdk": "*",
+    "rango-types": "*",
+    "uuid": "*"
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.3.4"
+  },
+  "dependencies": {
+    "@sentry/browser": "^6.12.0",
+    "mitt": "^3.0.0",
+    "rango-types": "^0.1.46",
+    "uuid": "^9.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

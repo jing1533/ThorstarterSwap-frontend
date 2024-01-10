@@ -1,0 +1,1 @@
+{"version":3,"file":"SwapToken.types.d.ts","sourceRoot":"","sources":["../../../../../../src/components/SwapListItem/SwapToken.types.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,YAAY,EAAE,MAAM,EAAE,aAAa,EAAE,MAAM,sBAAsB,CAAC;AAEhF,MAAM,WAAW,cAAc;IAC7B,IAAI,EAAE,aAAa,CAAC;IACpB,MAAM,EAAE,MAAM,CAAC;CAChB;AAED,MAAM,MAAM,SAAS,GAAG,cAAc,GAAG,YAAY,CAAC"}

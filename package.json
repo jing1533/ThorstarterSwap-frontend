@@ -9,7 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@rango-dev/widget-embedded": "0.14.1-next.8",
+    "@rango-dev/ui": "file:./@rango-dev/ui",
+    "@rango-dev/widget-embedded": "file:@rango-dev/widget-embedded",
     "@types/node": "20.2.5",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",

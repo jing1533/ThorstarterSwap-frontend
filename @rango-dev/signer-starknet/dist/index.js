@@ -1,0 +1,2 @@
+var o=Object.defineProperty;var a=(t,r)=>o(t,"name",{value:r,configurable:!0});import{SignerError as i,SignerErrorCode as s}from"rango-types";var e=class{constructor(r){this.provider=r}async signMessage(){throw i.UnimplementedError("signMessage")}async signAndSendTx(r){try{let{transaction_hash:n}=await this.provider.account.execute(r.calls);return{hash:n}}catch(n){throw new i(s.SEND_TX_ERROR,void 0,n)}}};a(e,"DefaultStarknetSigner");export{e as DefaultStarknetSigner};
+//# sourceMappingURL=index.js.map
