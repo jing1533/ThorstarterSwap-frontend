@@ -1,0 +1,1 @@
+{"version":3,"file":"checkStatus.d.ts","sourceRoot":"","sources":["../../src/actions/checkStatus.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,+BAA+B,CAAC;AAWhE,OAAO,EAEL,eAAe,EACf,gBAAgB,EAChB,WAAW,EACZ,MAAM,UAAU,CAAC;AA2alB;;;;;;;GAOG;AACH,wBAAsB,WAAW,CAC/B,OAAO,EAAE,eAAe,CAAC,WAAW,EAAE,eAAe,EAAE,gBAAgB,CAAC,GACvE,OAAO,CAAC,IAAI,CAAC,CAiBf"}

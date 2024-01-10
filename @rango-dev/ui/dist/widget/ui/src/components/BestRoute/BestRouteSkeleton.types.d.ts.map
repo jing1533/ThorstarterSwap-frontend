@@ -1,0 +1,1 @@
+{"version":3,"file":"BestRouteSkeleton.types.d.ts","sourceRoot":"","sources":["../../../../../../src/components/BestRoute/BestRouteSkeleton.types.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,SAAS,GAAG;IACtB,IAAI,EAAE,OAAO,GAAG,WAAW,GAAG,cAAc,CAAC;IAC7C,QAAQ,CAAC,EAAE,OAAO,CAAC;IACnB,GAAG,CAAC,EAAE,OAAO,CAAC;CACf,CAAC"}

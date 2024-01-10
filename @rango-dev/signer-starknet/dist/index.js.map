@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/signer.ts"],
+  "sourcesContent": ["import type { GenericSigner, StarknetTransaction } from 'rango-types';\n\nimport { SignerError, SignerErrorCode } from 'rango-types';\n\n// TODO - replace with real type\n// tslint:disable-next-line: no-any\ntype StarknetExternalProvider = any;\n\nexport class DefaultStarknetSigner\n  implements GenericSigner<StarknetTransaction>\n{\n  private provider: StarknetExternalProvider;\n\n  constructor(provider: StarknetExternalProvider) {\n    this.provider = provider;\n  }\n\n  async signMessage(): Promise<string> {\n    throw SignerError.UnimplementedError('signMessage');\n  }\n\n  async signAndSendTx(tx: StarknetTransaction): Promise<{ hash: string }> {\n    try {\n      const { transaction_hash } = await this.provider.account.execute(\n        tx.calls\n      );\n      return { hash: transaction_hash };\n    } catch (error) {\n      throw new SignerError(SignerErrorCode.SEND_TX_ERROR, undefined, error);\n    }\n  }\n}\n"],
+  "mappings": "+EAEA,OAAS,eAAAA,EAAa,mBAAAC,MAAuB,cAMtC,IAAMC,EAAN,KAEP,CAGE,YAAYC,EAAoC,CAC9C,KAAK,SAAWA,CAClB,CAEA,MAAM,aAA+B,CACnC,MAAMC,EAAY,mBAAmB,aAAa,CACpD,CAEA,MAAM,cAAcC,EAAoD,CACtE,GAAI,CACF,GAAM,CAAE,iBAAAC,CAAiB,EAAI,MAAM,KAAK,SAAS,QAAQ,QACvDD,EAAG,KACL,EACA,MAAO,CAAE,KAAMC,CAAiB,CAClC,OAASC,EAAP,CACA,MAAM,IAAIH,EAAYI,EAAgB,cAAe,OAAWD,CAAK,CACvE,CACF,CACF,EAvBaE,EAAAP,EAAA",
+  "names": ["SignerError", "SignerErrorCode", "DefaultStarknetSigner", "provider", "SignerError", "tx", "transaction_hash", "error", "SignerErrorCode", "__name"]
+}

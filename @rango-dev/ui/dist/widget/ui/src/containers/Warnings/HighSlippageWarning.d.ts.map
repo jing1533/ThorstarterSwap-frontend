@@ -1,0 +1,1 @@
+{"version":3,"file":"HighSlippageWarning.d.ts","sourceRoot":"","sources":["../../../../../../src/containers/Warnings/HighSlippageWarning.tsx"],"names":[],"mappings":"AACA,OAAO,KAAK,MAAM,OAAO,CAAC;AAI1B,UAAU,SAAS;IACjB,gBAAgB,EAAE,MAAM,CAAC;IACzB,YAAY,EAAE,OAAO,CAAC;IACtB,cAAc,EAAE,MAAM,IAAI,CAAC;CAC5B;AAED,wBAAgB,mBAAmB,CAAC,KAAK,EAAE,SAAS,qBAqBnD"}

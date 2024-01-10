@@ -1,0 +1,29 @@
+{
+  "name": "@rango-dev/signer-solana",
+  "version": "0.17.0",
+  "license": "MIT",
+  "type": "module",
+  "module": "./dist/index.js",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "node ../../scripts/build/command.mjs --path signers/signer-solana",
+    "clean": "rimraf dist",
+    "format": "prettier --write '{.,src}/**/*.{ts,tsx}'",
+    "lint": "eslint \"**/*.{ts,tsx}\" --ignore-path ../../.eslintignore"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.67.2",
+    "rango-types": "^0.1.46"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
