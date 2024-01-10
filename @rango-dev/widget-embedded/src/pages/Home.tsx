@@ -1,6 +1,6 @@
-import type { SwapResult } from 'rango-sdk';
+import type { SwapResult } from "rango-sdk";
 
-import { i18n } from '@lingui/core';
+import { i18n } from "@lingui/core";
 import {
   Alert,
   BestRoute,
@@ -11,17 +11,17 @@ import {
   SwapInput,
   Typography,
   WarningIcon,
-} from '@rango-dev/ui';
-import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+} from "@rango-dev/ui";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { HomeButtons } from '../components/HeaderButtons';
-import { Layout } from '../components/Layout';
-import { NoRoutes } from '../components/NoRoutes';
-import { RouteErrors } from '../components/RouteErrors';
-import { SwitchFromAndToButton } from '../components/SwitchFromAndTo';
-import { errorMessages } from '../constants/errors';
-import { navigationRoutes } from '../constants/navigationRoutes';
+import { HomeButtons } from "../components/HeaderButtons";
+import { Layout } from "../components/Layout";
+import { NoRoutes } from "../components/NoRoutes";
+import { RouteErrors } from "../components/RouteErrors";
+import { SwitchFromAndToButton } from "../components/SwitchFromAndTo";
+import { errorMessages } from "../constants/errors";
+import { navigationRoutes } from "../constants/navigationRoutes";
 import {
   BALANCE_MAX_DECIMALS,
   BALANCE_MIN_DECIMALS,
@@ -33,21 +33,21 @@ import {
   TOKEN_AMOUNT_MIN_DECIMALS,
   USD_VALUE_MAX_DECIMALS,
   USD_VALUE_MIN_DECIMALS,
-} from '../constants/routing';
-import { useSwapInput } from '../hooks/useSwapInput';
-import { useBestRouteStore } from '../store/bestRoute';
-import { useMetaStore } from '../store/meta';
-import { useUiStore } from '../store/ui';
-import { useWalletsStore } from '../store/wallets';
-import { ButtonState } from '../types';
-import { getContainer } from '../utils/common';
-import { getBlockchainShortNameFor } from '../utils/meta';
+} from "../constants/routing";
+import { useSwapInput } from "../hooks/useSwapInput";
+import { useBestRouteStore } from "../store/bestRoute";
+import { useMetaStore } from "../store/meta";
+import { useUiStore } from "../store/ui";
+import { useWalletsStore } from "../store/wallets";
+import { ButtonState } from "../types";
+import { getContainer } from "../utils/common";
+import { getBlockchainShortNameFor } from "../utils/meta";
 import {
   numberToString,
   secondsToString,
   totalArrivalTime,
-} from '../utils/numbers';
-import { getFormattedBestRoute, getPriceImpactLevel } from '../utils/routing';
+} from "../utils/numbers";
+import { getFormattedBestRoute, getPriceImpactLevel } from "../utils/routing";
 import {
   canComputePriceImpact,
   getOutputRatio,
@@ -57,38 +57,38 @@ import {
   hasLimitError,
   LimitErrorMessage,
   outputRatioHasWarning,
-} from '../utils/swap';
-import { getBalanceFromWallet } from '../utils/wallets';
+} from "../utils/swap";
+import { getBalanceFromWallet } from "../utils/wallets";
 
-const Container = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  overflowY: 'visible',
+const Container = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  overflowY: "visible",
 });
 
-const FromContainer = styled('div', {
-  position: 'relative',
+const FromContainer = styled("div", {
+  position: "relative",
 });
 
-const InputsContainer = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
+const InputsContainer = styled("div", {
+  display: "flex",
+  flexDirection: "column",
   gap: 5,
-  alignSelf: 'stretch',
+  alignSelf: "stretch",
 });
 
-const BestRouteContainer = styled('div', {
-  width: '100%',
-  paddingTop: '$2',
+const BestRouteContainer = styled("div", {
+  width: "100%",
+  paddingTop: "$2",
 });
 
-const FooterStepAlarm = styled('div', {
-  paddingBottom: '$15',
+const FooterStepAlarm = styled("div", {
+  paddingBottom: "$15",
 });
 
-const FooterAlert = styled('div', {
-  width: '100%',
-  display: 'flex',
+const FooterAlert = styled("div", {
+  width: "100%",
+  display: "flex",
 });
 
 export function Home() {
@@ -167,11 +167,11 @@ export function Home() {
             fromBlockchain?.name,
             fromToken?.symbol,
             fromToken?.address
-          )?.amount || '0',
+          )?.amount || "0",
           BALANCE_MIN_DECIMALS,
           BALANCE_MAX_DECIMALS
         )
-      : '0';
+      : "0";
 
   const tokenBalanceReal =
     !!fromBlockchain && !!fromToken
@@ -181,7 +181,7 @@ export function Home() {
             fromBlockchain?.name,
             fromToken?.symbol,
             fromToken?.address
-          )?.amount || '0',
+          )?.amount || "0",
           getBalanceFromWallet(
             connectedWallets,
             fromBlockchain?.name,
@@ -189,12 +189,12 @@ export function Home() {
             fromToken?.address
           )?.decimal
         )
-      : '0';
+      : "0";
 
   useEffect(() => {
     setCurrentPage(navigationRoutes.home);
     resetRouteWallets();
-    return setCurrentPage.bind(null, '');
+    return setCurrentPage.bind(null, "");
   }, []);
 
   const percentageChange =
@@ -212,7 +212,7 @@ export function Home() {
         token: { displayName: swap.from.symbol, image: swap.from.logo },
         chain: {
           displayName:
-            getBlockchainShortNameFor(swap.from.blockchain, blockchains) ?? '',
+            getBlockchainShortNameFor(swap.from.blockchain, blockchains) ?? "",
           image: swap.from.blockchainLogo,
         },
         price: {
@@ -230,7 +230,7 @@ export function Home() {
         token: { displayName: swap.to.symbol, image: swap.to.logo },
         chain: {
           displayName:
-            getBlockchainShortNameFor(swap.to.blockchain, blockchains) ?? '',
+            getBlockchainShortNameFor(swap.to.blockchain, blockchains) ?? "",
           image: swap.to.blockchainLogo,
         },
         price: {
@@ -255,8 +255,8 @@ export function Home() {
                   <Divider direction="horizontal" size={8} />
                   <Typography size="xsmall" variant="body" color="neutral900">
                     {i18n.t({
-                      id: 'yourSymbol',
-                      message: 'Yours: {amount} {symbol}',
+                      id: "yourSymbol",
+                      message: "Yours: {amount} {symbol}",
                       values: {
                         amount: numberToString(
                           swapHasError?.fromAmount || null,
@@ -302,13 +302,14 @@ export function Home() {
             } else {
               navigate(navigationRoutes.confirmSwap);
             }
-          }}>
+          }}
+        >
           {swapButtonState.title}
         </Button>
       }
       header={{
         hasConnectWallet: true,
-        title: i18n.t('Swap'),
+        title: i18n.t("Thorstarter Swap"),
         suffix: (
           <HomeButtons
             layoutRef={layoutRef.current}
@@ -319,24 +320,25 @@ export function Home() {
             onClickSettings={() => navigate(navigationRoutes.settings)}
           />
         ),
-      }}>
+      }}
+    >
       <Container>
         <InputsContainer>
           <FromContainer>
             <SwapInput
-              label={i18n.t('From')}
+              label={i18n.t("From")}
               mode="From"
               onInputChange={setInputAmount}
               balance={tokenBalance}
               chain={{
-                displayName: fromBlockchain?.displayName || '',
-                image: fromBlockchain?.logo || '',
+                displayName: fromBlockchain?.displayName || "",
+                image: fromBlockchain?.logo || "",
               }}
               token={{
-                displayName: fromToken?.symbol || '',
-                image: fromToken?.image || '',
+                displayName: fromToken?.symbol || "",
+                image: fromToken?.image || "",
               }}
-              onClickToken={() => navigate('from-swap')}
+              onClickToken={() => navigate("from-swap")}
               price={{
                 value: inputAmount,
                 usdValue: priceImpactInputCanNotBeComputed
@@ -350,11 +352,11 @@ export function Home() {
                   ? errorMessages.unknownPriceError.impactTitle
                   : undefined,
               }}
-              disabled={loadingMetaStatus === 'failed'}
-              loading={loadingMetaStatus === 'loading'}
+              disabled={loadingMetaStatus === "failed"}
+              loading={loadingMetaStatus === "loading"}
               onSelectMaxBalance={() => {
-                if (tokenBalance !== '0') {
-                  setInputAmount(tokenBalanceReal.split(',').join(''));
+                if (tokenBalance !== "0") {
+                  setInputAmount(tokenBalanceReal.split(",").join(""));
                 }
               }}
             />
@@ -362,15 +364,15 @@ export function Home() {
           </FromContainer>
           <SwapInput
             sharpBottomStyle={!!bestRoute?.result || fetchingBestRoute}
-            label={i18n.t('To')}
+            label={i18n.t("To")}
             mode="To"
             chain={{
-              displayName: toBlockchain?.displayName || '',
-              image: toBlockchain?.logo || '',
+              displayName: toBlockchain?.displayName || "",
+              image: toBlockchain?.logo || "",
             }}
             token={{
-              displayName: toToken?.symbol || '',
-              image: toToken?.image || '',
+              displayName: toToken?.symbol || "",
+              image: toToken?.image || "",
             }}
             percentageChange={
               !!percentageChange?.lt(0)
@@ -401,9 +403,9 @@ export function Home() {
                 ? errorMessages.unknownPriceError.impactTitle
                 : undefined,
             }}
-            onClickToken={() => navigate('to-swap')}
-            disabled={loadingMetaStatus === 'failed'}
-            loading={loadingMetaStatus === 'loading'}
+            onClickToken={() => navigate("to-swap")}
+            disabled={loadingMetaStatus === "failed"}
+            loading={loadingMetaStatus === "loading"}
           />
         </InputsContainer>
         {fetchingBestRoute && (
@@ -481,7 +483,7 @@ export function Home() {
         priceImpactCanNotBeComputed={
           priceImpactInputCanNotBeComputed || priceImpactOutputCanNotBeComputed
         }
-        loading={fetchingBestRoute || loadingMetaStatus === 'loading'}
+        loading={fetchingBestRoute || loadingMetaStatus === "loading"}
         extraSpace={!!bestRoute?.result || !bestRoute}
       />
     </Layout>
