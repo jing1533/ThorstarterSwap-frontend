@@ -1,13 +1,12 @@
-import RangoWidget from '../rango-widget'
-import styles from './page.module.css'
+import ThorstarterSwapWidget from "../thorstarter-swap-widget";
+import styles from "./page.module.css";
 
 function Home() {
   return (
     <main className={styles.main}>
-      <RangoWidget />
+      <ThorstarterSwapWidget />
     </main>
-  )
+  );
 }
-
 
 export default Home;
