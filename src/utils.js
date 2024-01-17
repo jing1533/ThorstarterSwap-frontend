@@ -1,28 +1,47 @@
+const CHAINS = ["MAYA", "THOR", "ETH", "BTC", "DASH", "KUJI"];
+const CHAINS_NAMES = {
+  MAYA: "MAYAChain",
+  THOR: "THORChain",
+  ETH: "Ethereum",
+  BTC: "Bitcoin",
+  DASH: "Dash",
+  KUJI: "Kujira"
+};
+const CHAINS_NATIVE_ASSET = {
+  MAYA: "CACAO",
+  THOR: "RUNE",
+  ETH: "ETH",
+  BTC: "BTC",
+  DASH: "DASH",
+  KUJI: "KUJI"
+};
+
 const tokens = [
   {
     name: "Bitcoin",
     chain: "Bitcoin",
     symbol: "BTC",
-    address: "BTC",
-    decimals: 6,
+    address: "native",
+    decimals: 8,
   },
   {
     name: "Ethereum",
     chain: "Ethereum",
     symbol: "ETH",
-    decimals: 6,
+    address: "native",
+    decimals: 18,
   },
   {
     name: "Link Token",
     chain: "Ethereum",
     symbol: "LINK",
-    address: "ETH.LINK-0x123abc",
-    decimals: 6,
+    address: "ETH.LINK-0x514910771AF9Ca656af840dff83E8264EcF986CA",
+    decimals: 18,
   },
 ];
 
 const prices = {
-  "ETH.LINK-0x123abc": 15.34,
+  "ETH.LINK-0x514910771AF9Ca656af840dff83E8264EcF986CA": 15.34,
 };
 
 const bridges = [
@@ -30,7 +49,7 @@ const bridges = [
     type: "bridge",
     id: "thorchain",
     name: "Thorchain",
-    assets: ["BTC", "ETH", "AVAX", "ETH.LINK-0x123abc"],
+    assets: ["BTC", "ETH", "AVAX", "ETH.LINK-0x514910771AF9Ca656af840dff83E8264EcF986CA"],
   },
 ];
 
@@ -41,10 +60,10 @@ const dexes = [
     name: "Uniswap V3",
     assets: [
       "ETH",
-      "ETH.USDC-0x",
-      "ETH.USDT-0x",
-      "ETH.UNI-0x",
-      "ETH.LINK-0x123abc",
+      "ETH.USDC-0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "ETH.USDT-0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "ETH.UNI-0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+      "ETH.LINK-0x514910771AF9Ca656af840dff83E8264EcF986CA",
     ],
   },
 ];
@@ -71,7 +90,7 @@ const thorchainPools = {
     balance_asset: "135500708775",
     balance_rune: "1237692339067823",
   },
-  "ETH.LINK-0x123abc": {
+  "ETH.LINK-0x514910771AF9Ca656af840dff83E8264EcF986CA": {
     asset: "ETH.LINK-0X514910771AF9CA656AF840DFF83E8264ECF986CA",
     status: "Available",
     balance_asset: "999159471620",
@@ -100,7 +119,7 @@ function getAnySwapOutput(a, pool1, pool2) {
 }
 
 const uniswapv3Pools = {
-  "ETH/ETH.LINK-0x123abc": {
+  "ETH/ETH.LINK-0x514910771AF9Ca656af840dff83E8264EcF986CA": {
     fee: 0.003,
     price: 169.6526,
   },
@@ -176,5 +195,59 @@ function findQuotes(inputAsset, outputAsset, amount) {
 }
 
 console.log(
-  JSON.stringify(findQuotes("BTC", "ETH.LINK-0x123abc", 0.01), null, 2)
+  JSON.stringify(findQuotes("BTC", "ETH.LINK-0x514910771AF9Ca656af840dff83E8264EcF986CA", 0.01), null, 2)
 );
+
+export class ThorchainClient {
+  constructor(midgardUrl, asset) {
+    this.midgardUrl = midgardUrl;
+    this.asset = asset;
+  }
+
+  async balance(address) {
+    const coins = (await this.request("/balance/" + address)).coins;
+    const coin = coins.find((c) => c.asset === this.asset);
+    if (!coin) return 0;
+    return parseFloat(coin.amount) / (coin.asset === "CACAO" ? 1e10 : 1e8);
+  }
+
+  async balances(address, pools = []) {
+    if (this.asset !== "CACAO") {
+      return [{ asset: this.asset, balance: await this.balance(address) }];
+    }
+    const coins = (await this.request("/balance/" + address)).coins;
+    return coins.map((c) => ({
+      asset: c.asset.includes("/") ? c.asset : "MAYA." + c.asset,
+      balance:
+        parseFloat(c.amount) /
+        (c.asset === "MAYA" ? 1e4 : c.asset === "CACAO" ? 1e10 : 1e8),
+    }));
+  }
+
+  async request(path) {
+    return await (await fetch(this.midgardUrl + "/v2" + path)).json();
+  }
+}
+
+export class BitcoinClient {
+  async balance(address) {
+    const url = "https://blockchain.info";
+    const url2 = "https://blockchair.info";
+    let b;
+    try {
+      b = await (await fetch(url + "/q/addressbalance/" + address)).text();
+    }
+    catch {
+      console.log((await (await fetch("https://api.blockchair.com/bitcoin/addresses/balances?addresses=" + address)).json()).data)
+      b = (await (await fetch("https://api.blockchair.com/bitcoin/addresses/balances?addresses=" + address)).json()).data;
+      b = b[address];
+      if (!b) b = 0;
+      console.log(b)
+    }
+    return parseFloat(b) / 1e8;
+  }
+
+  async balances(address) {
+    return [{ asset: "BTC.BTC", balance: await this.balance(address) }];
+  }
+}
