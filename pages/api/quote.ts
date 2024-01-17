@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { thorchainPools, uniswapv3Pools } from '../utils/constants'
-import { getAnySwapOutput } from '../utils/functions'
+import { thorchainPools, uniswapv3Pools } from '../../utils/constants'
+import { getAnySwapOutput } from '../../utils/functions'
 
 export default async function handler(
   req: NextApiRequest,

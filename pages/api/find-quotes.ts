@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { bridges, dexes, tokens, prices } from '../utils/constants'
-import { quote } from '../utils/functions'
+import { bridges, dexes, tokens, prices } from '../../utils/constants'
+import { quote } from '../../utils/functions'
 
 export default async function handler(
   req: NextApiRequest,
