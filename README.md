@@ -1,4 +1,4 @@
-## Thorstarter Swap
+## Thorstarter Swap (Proof of Concept)
 
 This is a [Next.js](https://nextjs.org/) project built by a developer @Thorstarter.org
 
