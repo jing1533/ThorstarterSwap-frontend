@@ -9,7 +9,7 @@ export default async function handler(
   let { connection, inputAsset, outputAsset, amount }: {connection: string, inputAsset: string, outputAsset: string, amount: number} = req.body
  
   try {
-    switch (connection) {
+    switch (connection.toLowerCase()) {
       case "thorchain":
         res.status(400).send({
           status: 'success',

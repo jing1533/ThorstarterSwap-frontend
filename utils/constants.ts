@@ -106,6 +106,22 @@ export const uniswapv3Pools: any = {
   },
 };
 
+export const supportedProviders: any = [
+//  "KYBER",
+//  "ONEINCH",
+//  "SUSHISWAP",
+  "THORCHAIN",
+//  "UNISWAPV2",
+  "UNISWAPV3",
+//  "ZEROX",
+  // "ONEINCH-AVAX",
+  // "PANGOLIN",
+  // "TRADERJOE",
+  // "KYBER-AVAX",
+  // "WOOFI-AVAX",
+  // "PANCAKESWAPV2-BSC"
+]
+
 export const pools: any = [
   {
       "annualPercentageRate": "-0.15661034459603665",

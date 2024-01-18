@@ -21,7 +21,7 @@ export function getAnySwapOutput(amount: number, pool1: any, pool2: any) {
 }
 
 export function quote(connection: string, inputAsset: string, outputAsset: string, amount: number) {
-  switch (connection) {
+  switch (connection.toLowerCase()) {
     case "thorchain":
       return getAnySwapOutput(
         amount,
